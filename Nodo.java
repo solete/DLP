@@ -120,7 +120,7 @@ public class Nodo {
         res+=")";
         return res;
     }
-    
+    //a
     public char[][] decodificar(){
         int sep = this.dim/2;
         char deco[][] = new char[this.dim][this.dim];
