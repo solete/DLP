@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quadtree;
+package DLP;
+
+//prueba1
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class QuadTree {
         ArrayList<Nodo> hijos = null; 
         //array auxiliar para guardar los hijos del nodo analizado
         ArrayList<Nodo> nuevosHijos = new ArrayList<Nodo>(); 
+        //array auxiliar para decodificacion
+        char deco[][];
         
         //Analisis de las opciones de ejecución
         for (int i = 0; i < args.length; i++) {
@@ -124,9 +128,7 @@ public class QuadTree {
         */
         
         if(d){
-            if(codificacion.isEmpty())
-                codificacion = quadTree.imprimir();
-            
+            deco = quadTree.decodificar();
         }
     }
     

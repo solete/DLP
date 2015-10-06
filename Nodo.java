@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quadtree;
+package DLP;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,7 @@ public class Nodo {
     Boolean hoja;
     private char datos[][];
     private ArrayList<Nodo> hijos;
+    private int dim;
     
     /*
         Constructores
@@ -32,6 +33,7 @@ public class Nodo {
         this.datos = datos;
         this.hoja = true;
         this.hijos = new ArrayList<>();
+        this.dim = dimension;
     }
     
     /*
@@ -117,5 +119,34 @@ public class Nodo {
         
         res+=")";
         return res;
+    }
+    
+    public char[][] decodificar(){
+        int sep = this.dim/2;
+        char deco[][] = new char[this.dim][this.dim];
+        char pc[][] = new char[(this.dim)/2][(this.dim/2)];
+        char sc[][] = new char[(this.dim)/2][(this.dim/2)];
+        char tc[][] = new char[(this.dim)/2][(this.dim/2)];
+        char cc[][] = new char[(this.dim)/2][(this.dim/2)];
+        if(this.hoja){
+            for (int i = 0; i < this.dim; i++) {
+                for (int j = 0; j < this.dim; j++) {
+                    deco[i][j] = this.datos[0][0];                    
+                }
+            }
+        }else{
+            pc = this.hijos.get(0).decodificar();
+            sc = this.hijos.get(1).decodificar();
+            tc = this.hijos.get(2).decodificar();
+            cc = this.hijos.get(3).decodificar();
+            
+            //guardar datos en deco
+            for (int i = 0; i < this.dim; i++) {
+                for (int j = 0; j < this.dim; j++) {
+                    
+                }                
+            }
+        }
+        return deco;
     }
 }
