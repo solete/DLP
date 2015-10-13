@@ -44,6 +44,10 @@ public class Nodo {
         this.datos = datos;
     }
     
+    public void setDim(int dim){
+        this.dim = dim;
+    }
+    
     public void setHoja(){
         char control = this.datos[0][0];
         for (int i = 0; i < datos.length; i++) {
@@ -52,7 +56,7 @@ public class Nodo {
                 if(e != control){
                     this.hoja = false;
                     return;
-                } 
+                }
             }
         }
     }
@@ -124,10 +128,10 @@ public class Nodo {
     public char[][] decodificar(){
         int sep = this.dim/2;
         char deco[][] = new char[this.dim][this.dim];
-        char pc[][] = new char[(this.dim)/2][(this.dim/2)];
-        char sc[][] = new char[(this.dim)/2][(this.dim/2)];
-        char tc[][] = new char[(this.dim)/2][(this.dim/2)];
-        char cc[][] = new char[(this.dim)/2][(this.dim/2)];
+        char pc[][] = new char[sep][sep];
+        char sc[][] = new char[sep][sep];
+        char tc[][] = new char[sep][sep];
+        char cc[][] = new char[sep][sep];
         if(this.hoja){
             for (int i = 0; i < this.dim; i++) {
                 for (int j = 0; j < this.dim; j++) {
@@ -139,12 +143,18 @@ public class Nodo {
             sc = this.hijos.get(1).decodificar();
             tc = this.hijos.get(2).decodificar();
             cc = this.hijos.get(3).decodificar();
-            
             //guardar datos en deco
             for (int i = 0; i < this.dim; i++) {
                 for (int j = 0; j < this.dim; j++) {
-                    
-                }                
+                    if(i<sep && j<sep)
+                        deco[i][j] = pc[i][j];
+                    if(i>=sep && j<sep)
+                        deco[i][j] = tc[i%sep][j];
+                    if(i<sep && j>=sep)
+                        deco[i][j] = sc[i][j%sep];
+                    if(i>=sep && j>=sep)
+                        deco[i][j] = cc[i%sep][j%sep];
+                }     
             }
         }
         return deco;

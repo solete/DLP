@@ -117,7 +117,7 @@ public class QuadTree {
         
         //impresion del arbol
         if(pa){
-            System.out.println("Arbol codificado");
+            System.out.println("\nArbol codificado");
             codificacion = quadTree.imprimir();
             System.out.println(codificacion);
         }
@@ -128,7 +128,16 @@ public class QuadTree {
         */
         
         if(d){
+            System.out.println("\nArbol descodificado");
             deco = quadTree.decodificar();
+            for (int i = 0; i < deco.length; i++) {
+                char[] deco1 = deco[i];
+                for (int j = 0; j < deco1.length; j++) {
+                    char e = deco1[j];
+                    System.out.print(e);
+                }
+                System.out.println("");
+            }
         }
     }
     
