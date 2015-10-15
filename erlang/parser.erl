@@ -1,6 +1,12 @@
+
+%% -*- coding: utf-8 -*-
+%% @author Adrian Insua y Aaron Montero
+%% @version 1.
+%% @doc Este modulo es una emulacion de la clase parser.java
 -module(parser).
 -export([parser/1]).
 
+%% @doc File::String(). Analiza el fichero y devuelve un array con las lineas
 parser(File) ->
     case file:open(File, read) of
         {ok, Fd} ->

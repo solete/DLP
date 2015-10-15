@@ -115,17 +115,11 @@ public class Nodo {
             return this.hijos;
     }
     
-    public void imp(){
-        for (int i = 0; i < datos.length; i++) {
-            char[] dato = datos[i];
-            for (int j = 0; j < dato.length; j++) {
-                char e = dato[j];
-                System.out.print(e);
-            }
-            System.out.println("");
-        }
-    }
-    
+    /*
+        Funcion de imprimir de estilo recursivo
+            Se concatena el resultado de la funcion que resulte de los hijos del 
+            nodo actual
+    */
     public String imprimir(){
         String res = "(";
         if(this.hoja)
@@ -149,6 +143,7 @@ public class Nodo {
         char tc[][] = new char[sep][sep];
         char cc[][] = new char[sep][sep];
         if(this.hoja){
+            //si es hoja se compone el cuadrante necesario con el mismo dato
             for (int i = 0; i < this.dim; i++) {
                 for (int j = 0; j < this.dim; j++) {
                     deco[i][j] = this.datos[0][0];                    

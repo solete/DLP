@@ -37,7 +37,7 @@ public class QuadTree {
         //array auxiliar para guardar los hijos del nodo analizado
         ArrayList<Nodo> nuevosHijos = new ArrayList<Nodo>(); 
         //array auxiliar para decodificacion
-        char deco[][];
+        char deco[][] = null;
         
         //Analisis de las opciones de ejecución
         for (int i = 0; i < args.length; i++) {
@@ -99,12 +99,15 @@ public class QuadTree {
             Se entra si el primer nodo no es hoja y está activada la codificacion
         */
         if(!quadTree.getHoja() && c){
+            //clonamos los resultados para que no se linkeen en memoria
             hijos = (ArrayList) quadTree.analizar().clone();
             while (hijos.size() > 0) {
+                //reiniciamos la variable auxiliar
                 nuevosHijos.clear();
                 for (Nodo hijo : hijos) {
                     if (hijo != null) {
                         if (!hijo.getHoja()) {
+                            //se alladen los resultados de analizar todos los hijos
                             nuevosHijos.addAll((ArrayList)hijo.analizar().clone());
                         }
                     }
@@ -127,15 +130,24 @@ public class QuadTree {
         */
         
         if(d){
-            System.out.println("\nArbol descodificado");
+            System.out.println("\nDescodificando arbol...");
             deco = quadTree.decodificar();
-            for (int i = 0; i < deco.length; i++) {
-                char[] deco1 = deco[i];
-                for (int j = 0; j < deco1.length; j++) {
-                    char e = deco1[j];
-                    System.out.print(e);
+        }
+        
+        /*
+            Impresion decodificacion
+        */
+        if(pd){
+            System.out.println("\nArbol descodificado");
+            if(deco.length > 0){
+                for (int i = 0; i < deco.length; i++) {
+                    char[] deco1 = deco[i];
+                    for (int j = 0; j < deco1.length; j++) {
+                        char e = deco1[j];
+                        System.out.print(e);
+                    }
+                    System.out.println("");
                 }
-                System.out.println("");
             }
         }
     }
