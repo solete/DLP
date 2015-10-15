@@ -99,19 +99,18 @@ public class QuadTree {
             Se entra si el primer nodo no es hoja y está activada la codificacion
         */
         if(!quadTree.getHoja() && c){
-            hijos = quadTree.analizar(dimension);
+            hijos = (ArrayList) quadTree.analizar().clone();
             while (hijos.size() > 0) {
                 nuevosHijos.clear();
-                dimension /= 2;
                 for (Nodo hijo : hijos) {
                     if (hijo != null) {
                         if (!hijo.getHoja()) {
-                            nuevosHijos.addAll(hijo.analizar(dimension));
+                            nuevosHijos.addAll((ArrayList)hijo.analizar().clone());
                         }
                     }
                 }
-
-                hijos = nuevosHijos;
+                hijos.clear();
+                hijos.addAll(nuevosHijos);
             }
         }
         

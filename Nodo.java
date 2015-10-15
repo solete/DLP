@@ -15,9 +15,9 @@ public class Nodo {
     /*
         Declaración de variables
     */
-    Boolean hoja;
+    private Boolean hoja;
     private char datos[][];
-    private ArrayList<Nodo> hijos;
+    ArrayList<Nodo> hijos;
     private int dim;
     
     /*
@@ -69,30 +69,38 @@ public class Nodo {
         return this.hoja;
     }
     
+    public int getDim(){
+        return this.dim;
+    }
+    
+    public Nodo getHijo(int i){
+         return this.hijos.get(i);
+    }
     /*
         Funciones propias de clase
     */
-    public ArrayList<Nodo> analizar(int dimension){
+    public ArrayList<Nodo> analizar(){
         /*se recorren los datos en dos mitades segun la dimension
         esas mitades en dos mitades, y cada una ira a un cuadrante o hijo
         */
         String linea;
-        int sep = dimension/2;
+        int sep = this.dim/2;
         Nodo n1, n2, n3, n4;
         char datosHijoCuadranteUno[][] = new char[sep][sep];
         char datosHijoCuadranteDos[][] = new char[sep][sep];
         char datosHijoCuadranteTres[][] = new char[sep][sep];
         char datosHijoCuadranteCuatro[][] = new char[sep][sep];;
-            for (int i = 0; i < dimension; i++) {
-                for (int j = 0; j < dimension; j++) {
+            for (int i = 0; i < this.dim; i++) {
+                for (int j = 0; j < this.dim; j++) {
+                    char dato = this.datos[i][j];
                     if((j < sep) && (i< sep))
-                        datosHijoCuadranteUno[i][j] = this.datos[i][j];
+                        datosHijoCuadranteUno[i][j] = dato;
                     else if((j>= sep) && (i<sep))
-                        datosHijoCuadranteDos[i][j%sep] = this.datos[i][j];
+                        datosHijoCuadranteDos[i][j%sep] = dato;
                     else if((j<sep) && (i>=sep))
-                        datosHijoCuadranteTres[i%sep][j] = this.datos[i][j];
+                        datosHijoCuadranteTres[i%sep][j] = dato;
                     else if((j>=sep) && (i>=sep))
-                        datosHijoCuadranteCuatro[i%sep][j%sep] = this.datos[i][j];
+                        datosHijoCuadranteCuatro[i%sep][j%sep] = dato;
                 }
             }
             n1 = new Nodo(datosHijoCuadranteUno, sep);
@@ -107,7 +115,19 @@ public class Nodo {
             n4 = new Nodo(datosHijoCuadranteCuatro, sep);
             n4.setHoja();
             this.hijos.add(n4);
+            System.out.println(this.hijos.size());
             return this.hijos;
+    }
+    
+    public void imp(){
+        for (int i = 0; i < datos.length; i++) {
+            char[] dato = datos[i];
+            for (int j = 0; j < dato.length; j++) {
+                char e = dato[j];
+                System.out.print(e);
+            }
+            System.out.println("");
+        }
     }
     
     public String imprimir(){
