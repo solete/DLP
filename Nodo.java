@@ -73,9 +73,6 @@ public class Nodo {
         return this.dim;
     }
     
-    public Nodo getHijo(int i){
-         return this.hijos.get(i);
-    }
     /*
         Funciones propias de clase
     */
@@ -115,7 +112,6 @@ public class Nodo {
             n4 = new Nodo(datosHijoCuadranteCuatro, sep);
             n4.setHoja();
             this.hijos.add(n4);
-            System.out.println(this.hijos.size());
             return this.hijos;
     }
     
