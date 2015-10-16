@@ -6,7 +6,8 @@
 -module(parser).
 -export([parser/1]).
 
-%% @doc File::String(). Analiza el fichero y devuelve un array con las lineas
+%% @doc Analiza el fichero y devuelve un array con las lineas
+%% @spec parser(file())->array()
 parser(File) ->
     case file:open(File, read) of
         {ok, Fd} ->

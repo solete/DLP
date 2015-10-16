@@ -16,41 +16,48 @@ start() -> %%Constructor vacio
     Pid = spawn(fun init/0),
     Pid.
 
-%% @doc Datos::array(), Dim::Integer(). Inicializa un proceso nodo, es decir un objeto de la clase nodo
+%% @doc Inicializa un proceso nodo, es decir un objeto de la clase nodo
+%% @spec start(array(),integer())->pid()
 start(Datos, Dim) -> %%Constructor con datos y dimension
     Pid = spawn(?MODULE, nodoClase, [Datos, true, [], Dim]),
     Pid.
 
-%% @doc Nodo::Pid(). Detiene todos los procesos nodos relacionados a ese pid
+%% @doc Detiene todos los procesos nodos relacionados a ese pid
+%% @spec stop(pid()) -> atom()
 stop(Nodo) ->
     Nodo ! stop.
 
 %%funcion privada para el constructor vacio
 init() -> nodoClase([], true, [], nil).
 
-%% @doc Nodo::Pid(), Datos::array(). Metodo setter de datos
+%% @doc Metodo setter de datos
+%% @spec setDatos(pid(),array())->any()
 setDatos(Nodo, Datos) ->
     Nodo ! {setDatos, Datos}.
 
-%% @doc Nodo::Pid(). Comprueba si el nodo con pid Nodo es hoja
+%% @doc Comprueba si el nodo con pid Nodo es hoja
+%% @spec setHoja(pid())-> any()
 setHoja(Nodo) ->
     Nodo ! setHoja.
 
 %% @doc Devuelve el valor de hoja del nodo
+%% @spec getHoja(pid()) -> boolean()
 getHoja(Nodo) ->
     Nodo ! {getHoja, self()},
     receive
         Valor -> Valor
     end.
 
-%% @doc Nodo::Pid(). Getter del valor de los datos del nodo Nodo
+%% @doc Getter del valor de los datos del nodo Nodo
+%% @spec getDatos(pid()) -> array()
 getDatos(Nodo) ->
     Nodo ! {getDatos,self()},
     receive
         {ok, Datos} -> Datos
     end.
 
-%%  @doc Nodo::Pid(). Metodo de la clase nodo, que realiza la subdivisión en cuadrantes
+%%  @doc Metodo de la clase nodo, que realiza la subdivisión en cuadrantes
+%%  @spec analizar(pid()) -> list()
 analizar(Nodo) ->
     Nodo ! {analizar,self()},
     receive
@@ -59,14 +66,16 @@ analizar(Nodo) ->
         {error, fin_lista} -> [] %% Si analizamos una hoja como primer elemento entrará por aqui
     end.
 
-%% @doc Nodo::Pid(). Metodo de la clase nodo que devuelve el string con el arbol parentizado
+%% @doc Metodo de la clase nodo que devuelve el string con el arbol parentizado
+%% @spec imprimir(pid()) -> list()
 imprimir(Nodo) ->
     Nodo ! {imprimir,self()},
     receive
         Res -> Res
     end.
 
-%% @doc Nodo::Pid(). Metodo de la clase nodo que devuelve un array con el arbol descodificado
+%% @doc Metodo de la clase nodo que devuelve un array con el arbol descodificado
+%% @spec descodificar(pid()) -> array()
 descodificar(Nodo) ->
     Nodo ! {descodificar, self()},
     receive
@@ -74,6 +83,7 @@ descodificar(Nodo) ->
     end.
 
 %%loop que actuara como objeto de la clase nodo, los argumentos son las variables de la clase
+%% @doc Metodo interno de la clase, se exporta para igualar la construccion a java
 nodoClase(Datos, Hoja, Hijos, Dim) ->
     receive
         {setDatos, Datos} -> 

@@ -8,7 +8,8 @@
 -import(parser, [parser/1]).
 -import(nodo, [start/1, analizar/1]).
 
-%% @doc args: ruta, imprimir, codificar, imprimir cod, decodificar, imprimir decod. -> función principal e interfaz del programa
+%% @doc Función principal e interfaz del programa
+%% @spec main(string(),boolean(),boolean(),boolean(),boolean(),boolean())->any()
 main("",_,_,_,_,_) -> {error, file_text_not_found}; %% error si no se especifica ruta
 main(File, P, C, Pa, D, Pd) ->
     {Dim, Imagen} = parser:parser(File),
