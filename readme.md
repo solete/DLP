@@ -222,4 +222,21 @@ En cuanto a velocidad de acceso también se ha comprobado que es mucho mas efica
 
 Por lo que realizando procesos concurrentes puros que usaran listas, ganariamos en velocidad y espacio en memoria
 
+##MATLAB
+
+###Contextualización
+a)matlab 2015 / octave 4.0 windows 10
+
+###Ventajas y desventajas
+b) manipulacion de matrices, representacion de datos y funciones, la implementacion de algoritmos y clases.
+
+###Justificaciones
+c)al no ser un experto en matlab, no se si las carencias que sufro son por parte del lenguaje o por mi experiencia con el.
+De momento noto en falta un manejo menos manual de las matrices, tanto para añadir elemenos, (con numeros es mucho mas facil, con chars ya es otro cantar) He tenido problemas para poder crear una matriz de strings que se fuese creando iterativamente por cada linea que se leia del .txt
+
+d)despues de mucho esfuerzo se ha conseguido  parsear una matriz igual que en java, por lo que luego poder adaptar el codigo ha sido mas facil.
+
+###Desaprovechamientos del lenguaje
+e)como comentaba antes, era imposible inicializar una matriz con zeros para luego añadirles chars y poder disfrutar de un mayor rendimiento de memoria. Pero al final, parseando la entrada y sustituyendo los simbolos por valores numericos ha sido posible. Entonces ya se pudo hacer uso del manejo compreto de matrices con matlab
+
  
